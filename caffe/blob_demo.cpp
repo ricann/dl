@@ -7,15 +7,32 @@ using namespace std;
 
 int main()
 {
-    Blob<float> a;
-    cout << "Size : " << a.shape_string() << endl;
-    a.Reshape(1, 2, 3, 4);
-    cout << "Size : " << a.shape_string() << endl;
+    Blob<float> blob;
+    cout << "Size : " << blob.shape_string() << endl;
+    blob.Reshape(1, 2, 3, 4);
+    cout << "Size : " << blob.shape_string() << endl;
 
-    float *p = a.mutable_cpu_data();
-    for(int i=0; i<a.count(); i++)
-        p[i] = i;
-    cout << "a.count() = " << a.count() << endl;
+    // set data and print them
+    float *data = blob.mutable_cpu_data();
+    for(int i=0; i<blob.count(); i++)
+        data[i] = i;
+    cout << "blob.count() = " << blob.count() << endl;
+
+    for(int n=0; n<blob.shape(0); n++) {
+        for(int c=0; c<blob.shape(1); c++) {
+            for(int h=0; h<blob.shape(2); h++) {
+                for(int w=0; w<blob.shape(3); w++) {
+                    cout << "blob"
+                        << "[" << n << "]"
+                        << "[" << c << "]"
+                        << "[" << h << "]"
+                        << "[" << w << "]"
+                        << " = "
+                        << blob.data_at(n, c, h, w) << endl;
+                }
+            }
+        }
+    }
 
     return 0;
 }
