@@ -1,0 +1,3 @@
+[submodule "caffe"]
+	path = caffe
+	url = http://gitlab.i.deephi.tech/sw/caffe.git
