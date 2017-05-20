@@ -13,10 +13,15 @@ int main()
     cout << "Size : " << blob.shape_string() << endl;
 
     // set data and print them
+    int cnt = blob.count();
     float *data = blob.mutable_cpu_data();
-    for(int i=0; i<blob.count(); i++)
+    float *diff = blob.mutable_cpu_diff();
+    for(int i=0; i<cnt; i++) {
         data[i] = i;
-    cout << "blob.count() = " << blob.count() << endl;
+        diff[i] = cnt -1 -i;
+    }
+    blob.Update();
+    cout << "blob.count() = " << cnt << endl;
 
     for(int n=0; n<blob.shape(0); n++) {
         for(int c=0; c<blob.shape(1); c++) {
@@ -33,6 +38,9 @@ int main()
             }
         }
     }
+
+    cout << "ASUM = " << blob.asum_data() << endl;
+    cout << "SUMSQ = " << blob.sumsq_data() << endl;
 
     return 0;
 }
