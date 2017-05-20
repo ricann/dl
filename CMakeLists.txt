@@ -13,7 +13,7 @@ ADD_DEFINITIONS("-DCPU_ONLY")
 
 # other public variables
 SET(OPENCV_LIBS opencv_core opencv_highgui opencv_imgproc)
-SET(TEST_LIBS caffe yaml-cpp glog protobuf)
+SET(TEST_LIBS caffe glog)
 
 # include directories, headers and libs
 INCLUDE_DIRECTORIES(
