@@ -1,0 +1,39 @@
+PROJECT(test)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+MESSAGE(STATUS "test CMakeList.txt -----------------------")
+
+# compiler related
+SET(CMAKE_C_COMPILER "clang")
+SET(CMAKE_C_FLAGS "-g -O2 -Wall -std=gnu99")
+SET(CMAKE_CXX_COMPILER "clang++")
+SET(CMAKE_CXX_FLAGS "-g -O2 -Wall -std=c++11 -pthread")
+
+# definitions
+ADD_DEFINITIONS("-DCPU_ONLY")
+
+# other public variables
+SET(OPENCV_LIBS opencv_core opencv_highgui opencv_imgproc)
+SET(TEST_LIBS caffe yaml-cpp glog protobuf)
+
+# include directories, headers and libs
+INCLUDE_DIRECTORIES(
+    ${CMAKE_SOURCE_DIR}/caffe/include
+    ${CMAKE_SOURCE_DIR}/caffe/build/include
+)
+SET(TEST_LIB_PATH ${CMAKE_SOURCE_DIR}/caffe/build/lib)
+LINK_DIRECTORIES(${TEST_LIB_PATH})
+
+# mesages to display
+MESSAGE(STATUS "PROJECT_NAME: ${PROJECT_NAME}")
+MESSAGE(STATUS "CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
+MESSAGE(STATUS "CMAKE_BINARY_DIR: ${CMAKE_BINARY_DIR}")
+MESSAGE(STATUS "CMAKE_C_COMPILER: ${CMAKE_C_COMPILER}")
+MESSAGE(STATUS "CMAKE_C_FLAGS: ${CMAKE_C_FLAGS}")
+MESSAGE(STATUS "CMAKE_CXX_COMPILER: ${CMAKE_CXX_COMPILER}")
+MESSAGE(STATUS "CMAKE_CXX_FLAGS: ${CMAKE_CXX_FLAGS}")
+MESSAGE(STATUS "TEST_LIB_PATH: ${TEST_LIB_PATH}")
+MESSAGE(STATUS "OPENCV_LIBS: ${OPENCV_LIBS}")
+MESSAGE(STATUS "TEST_LIBS: ${TEST_LIBS}")
+
+# build all targets
+ADD_SUBDIRECTORY(test)
