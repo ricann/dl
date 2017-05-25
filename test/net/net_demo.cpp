@@ -10,10 +10,19 @@ int main()
 
     string proto("deploy.prototxt");
     Net<float> nn(proto, caffe::TEST);
-    vector<string> bn = nn.blob_names();
 
+    cout << endl;
+    cout << "blob list ..." << endl;
+    vector<string> bn = nn.blob_names();
     for(int i=0; i<bn.size(); i++) {
         cout << "Blob #" << i << " : " << bn[i] << endl;
+    }
+
+    cout << endl;
+    cout << "layer list ..." << endl;
+    vector<string> ln = nn.layer_names();
+    for(int i=0; i<ln.size(); i++) {
+        cout << "layer #" << i << " : " << ln[i] << endl;
     }
 
     google::ShutdownGoogleLogging();
