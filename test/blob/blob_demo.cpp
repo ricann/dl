@@ -1,10 +1,8 @@
-#include <vector>
-#include <iostream>
 #include <caffe/blob.hpp>
 #include <caffe/util/io.hpp>
+#include "common.hpp"
 
 using namespace caffe;
-using namespace std;
 
 void PrintBlob(Blob<float> &blob);
 
@@ -63,7 +61,6 @@ void PrintBlob(Blob<float> &blob)
     }
     cout << "ASUM = " << blob.asum_data() << endl;
     cout << "SUMSQ = " << blob.sumsq_data() << endl;
-    blob.scale_data(0.1);
-    ReshapeLike(source);
     cout << endl;
 }
+

@@ -17,6 +17,7 @@ SET(TEST_LIBS caffe glog boost_system)
 
 # include directories, headers and libs
 INCLUDE_DIRECTORIES(
+    ${CMAKE_SOURCE_DIR}/include
     ${CMAKE_SOURCE_DIR}/caffe/include
     ${CMAKE_SOURCE_DIR}/caffe/build/include
 )
@@ -36,4 +37,5 @@ MESSAGE(STATUS "OPENCV_LIBS: ${OPENCV_LIBS}")
 MESSAGE(STATUS "TEST_LIBS: ${TEST_LIBS}")
 
 # build all targets
-ADD_SUBDIRECTORY(test)
+ADD_SUBDIRECTORY(test/blob)
+ADD_SUBDIRECTORY(test/net)
