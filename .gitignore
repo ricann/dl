@@ -30,7 +30,7 @@
 # self defined
 build
 log
-target
-blob_demo
-net_demo
 tags
+
+MNIST_data
+__pycache__
