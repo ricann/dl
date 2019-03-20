@@ -206,14 +206,15 @@ def time_tensorflow_run(session, target, info_string):
 
 batch_size,height,width=1,224,224
 
-with tf.device("cpu"):
+with tf.device("gpu"):
     inputs=tf.random_uniform((batch_size,height,width,3))
     with slim.arg_scope(resnet_arg_scope(is_training=False)):
-        net,end_points=resnet_v2_50(inputs,1000)
+        net,end_points=resnet_v2_152(inputs,1000)
+
 
 init=tf.global_variables_initializer()
 sess=tf.Session()
 sess.run(init)
-num_batches=1
+num_batches=100
 time_tensorflow_run(sess,net,"ForWard")
 
